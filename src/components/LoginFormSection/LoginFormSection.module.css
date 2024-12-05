@@ -1,0 +1,19 @@
+.loginFormSection {
+  height: 411px;
+  padding: 20px;
+  border-radius: 30px;
+  background: var(--black-background);
+}
+
+@media screen and (min-width: 768px) {
+  .loginFormSection {
+    width: 704px;
+    height: 960px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .loginFormSection {
+    width: 600px;
+    height: 736px;
+  }
+}
