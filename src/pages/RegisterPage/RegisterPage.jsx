@@ -1,4 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import Layout from '../../components/Layout/Layout';
+import Hero from '../../components/Hero/Hero';
 
 const RegisterPage = () => {
   return (
@@ -6,7 +8,9 @@ const RegisterPage = () => {
       <Helmet>
         <title>Registration</title>
       </Helmet>
-      <h1>Register Page</h1>
+      <Layout>
+        <Hero />
+      </Layout>
     </>
   );
 };

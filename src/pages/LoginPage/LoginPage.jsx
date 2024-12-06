@@ -1,8 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Hero from '../../components/Hero/Hero';
-import Container from '../../components/Container/Container';
 import LoginFormSection from '../../components/LoginFormSection/LoginFormSection';
-import PageContent from '../../components/PageContent/PageContent';
+import Layout from '../../components/Layout/Layout';
 
 const LoginPage = () => {
   return (
@@ -10,14 +9,10 @@ const LoginPage = () => {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <main>
-        <Container>
-          <PageContent>
-            <LoginFormSection />
-            <Hero />
-          </PageContent>
-        </Container>
-      </main>
+      <Layout>
+        <LoginFormSection />
+        <Hero />
+      </Layout>
     </>
   );
 };
