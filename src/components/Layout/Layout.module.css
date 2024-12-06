@@ -6,8 +6,13 @@
 
 @media screen and (min-width: 768px) {
   .main {
+    gap: 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .main {
     flex-direction: row;
     justify-content: center;
-    gap: 16px;
   }
 }

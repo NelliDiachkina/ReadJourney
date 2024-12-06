@@ -3,5 +3,5 @@
   --black-background: #1f1f1f;
   --black-light: #262626;
   --white: #f9f9f9;
-  --gray: #e3e3e380;
+  --gray: rgba(227, 227, 227, 0.5);
 }

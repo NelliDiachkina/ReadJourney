@@ -1,0 +1,28 @@
+.title {
+  color: var(--white);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px; /* 100% */
+  letter-spacing: 0.64px;
+  margin-top: 40px;
+  max-width: 444px;
+}
+
+.titleText {
+  color: var(--gray);
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 64px;
+    line-height: 60px; /* 93.75% */
+    letter-spacing: 1.28px;
+    margin-top: 157px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .title {
+    margin-top: 107px;
+  }
+}

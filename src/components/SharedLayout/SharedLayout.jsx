@@ -9,4 +9,5 @@ const SharedLayout = ({ children }) => {
     </div>
   );
 };
+
 export default SharedLayout;

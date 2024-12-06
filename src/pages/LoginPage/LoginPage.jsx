@@ -1,17 +1,20 @@
+import useMedia from '../../hooks/useMedia';
 import { Helmet } from 'react-helmet-async';
 import Hero from '../../components/Hero/Hero';
-import LoginFormSection from '../../components/LoginFormSection/LoginFormSection';
 import Layout from '../../components/Layout/Layout';
+import FormSection from '../../components/FormSection/FormSection';
 
 const LoginPage = () => {
+  const { isTablet } = useMedia();
+
   return (
     <>
       <Helmet>
         <title>Login</title>
       </Helmet>
       <Layout>
-        <LoginFormSection />
-        <Hero />
+        <FormSection></FormSection>
+        {!isTablet && <Hero />}
       </Layout>
     </>
   );
