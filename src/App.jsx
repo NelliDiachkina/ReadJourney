@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import PrivateRoute from './PrivateRoute';
-import Loader from './components/Loader/Loader';
+import SharedLayout from './components/SharedLayout/SharedLayout';
 
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
@@ -14,7 +14,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 function App() {
   return (
-    <Suspense fallback={<Loader />}>
+    <SharedLayout>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -26,7 +26,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </Suspense>
+    </SharedLayout>
   );
 }
 

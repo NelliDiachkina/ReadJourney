@@ -1,14 +1,7 @@
-import Container from '../Container/Container';
-import PageContent from '../PageContent/PageContent';
+import css from './Layout.module.css';
 
 const Layout = ({ children }) => {
-  return (
-    <main>
-      <Container>
-        <PageContent>{children}</PageContent>
-      </Container>
-    </main>
-  );
+  return <main className={css.main}>{children}</main>;
 };
 
 export default Layout;

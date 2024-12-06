@@ -1,11 +1,11 @@
-.pageContent {
+.main {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 @media screen and (min-width: 768px) {
-  .pageContent {
+  .main {
     flex-direction: row;
     justify-content: center;
     gap: 16px;
