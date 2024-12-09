@@ -1,7 +1,7 @@
 .formSection {
-  height: 411px;
   border-radius: 30px;
   background: var(--black-background);
+  padding: 20px;
 }
 
 .logoText {

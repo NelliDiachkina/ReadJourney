@@ -4,4 +4,7 @@
   --black-light: #262626;
   --white: #f9f9f9;
   --gray: rgba(227, 227, 227, 0.5);
+  --gray-dark: #686868;
+  --red: #e90516;
+  --border-color: rgba(249, 249, 249, 0.2);
 }
