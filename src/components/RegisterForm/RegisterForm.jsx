@@ -1,13 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import css from './RegisterForm.module.css';
 import { Link } from 'react-router-dom';
-
-const EMAIL_REGEX = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-// const EMAIL_REGEX =
-//   /^[a-zA-Z0-9](?:[a-zA-Z0-9._-]*[a-zA-Z0-9])?@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+import sprite from '../../assets/icons/sprite.svg';
+import { EMAIL_REGEX } from '../../constants/constants';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -22,6 +20,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const nameId = useId();
   const emailId = useId();
   const passwordId = useId();
@@ -58,7 +57,7 @@ const RegisterForm = () => {
             id={nameId}
             {...register('name')}
             type="text"
-            className={css.input}
+            className={`${css.input} ${errors.name ? css.errorInpt : ''}`}
           />
         </div>
         {errors.name && <div className={css.error}>{errors.name.message}</div>}
@@ -66,7 +65,11 @@ const RegisterForm = () => {
           <label htmlFor={emailId} className={css.label}>
             Mail:
           </label>
-          <input {...register('email')} type="email" className={css.input} />
+          <input
+            {...register('email')}
+            type="email"
+            className={`${css.input} ${errors.email ? css.errorInpt : ''}`}
+          />
         </div>
         {errors.email && (
           <div className={css.error}>{errors.email.message}</div>
@@ -77,9 +80,23 @@ const RegisterForm = () => {
           </label>
           <input
             {...register('password')}
-            type="password"
-            className={css.input}
+            type={showPassword ? 'text' : 'password'}
+            className={`${css.input} ${errors.password ? css.errorInpt : ''}`}
           />
+          <svg
+            role="button"
+            className={`${css.icon} ${errors.password ? css.iconError : ''}`}
+            onClick={() => setShowPassword(!showPassword)}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
+          >
+            <use
+              width={18}
+              height={18}
+              href={`${sprite}${
+                showPassword ? '#icon-eye-open' : '#icon-eye-off'
+              }`}
+            ></use>
+          </svg>
         </div>
         {errors.password && (
           <div className={css.error}>{errors.password.message}</div>

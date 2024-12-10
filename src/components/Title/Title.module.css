@@ -16,14 +16,15 @@
 @media screen and (min-width: 768px) {
   .title {
     font-size: 64px;
-    line-height: 60px; /* 93.75% */
+    line-height: 0.93;
     letter-spacing: 1.28px;
     margin-top: 157px;
+    margin-bottom: 40px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .title {
-    margin-top: 107px;
+    margin-top: 60px;
   }
 }

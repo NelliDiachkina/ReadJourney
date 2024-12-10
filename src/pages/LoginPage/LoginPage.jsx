@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Hero from '../../components/Hero/Hero';
 import Layout from '../../components/Layout/Layout';
 import FormSection from '../../components/FormSection/FormSection';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 const LoginPage = () => {
   const { isTablet } = useMedia();
@@ -13,7 +14,9 @@ const LoginPage = () => {
         <title>Login</title>
       </Helmet>
       <Layout>
-        <FormSection></FormSection>
+        <FormSection>
+          <LoginForm />
+        </FormSection>
         {!isTablet && <Hero />}
       </Layout>
     </>

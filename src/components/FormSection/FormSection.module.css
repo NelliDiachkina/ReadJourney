@@ -2,6 +2,7 @@
   border-radius: 30px;
   background: var(--black-background);
   padding: 20px;
+  min-height: 411px;
 }
 
 .logoText {
@@ -12,6 +13,7 @@
   .formSection {
     width: 704px;
     height: 960px;
+    padding: 40px 168px 20px 64px;
   }
   .logoText {
     display: inline-block;
@@ -22,5 +24,6 @@
   .formSection {
     width: 600px;
     height: 736px;
+    padding: 40px 64px;
   }
 }
