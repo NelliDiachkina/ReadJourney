@@ -1,0 +1,41 @@
+.userBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userBarText {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.12px;
+  letter-spacing: -0.32px;
+}
+
+.userBarBtn {
+  width: 91px;
+  height: 38px;
+  border-radius: 30px;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: 0.28px;
+  transition: all var(--Animation_cubic);
+}
+
+.userBarBtn:hover {
+  color: var(--black-background);
+  background-color: var(--white);
+}
+
+@media screen and (min-width: 768px) {
+  .userBarBtn {
+    width: 114px;
+    height: 42px;
+    font-size: 16px;
+    line-height: 1.12;
+    letter-spacing: 0.32px;
+  }
+}

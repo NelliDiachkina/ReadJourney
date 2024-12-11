@@ -1,0 +1,26 @@
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLink {
+  display: block;
+  color: var(--gray-dark);
+  font-size: 16px;
+  line-height: 1.12;
+  letter-spacing: -0.32px;
+  padding: 8px 0;
+  transition: all var(--Animation_cubic);
+}
+
+.active {
+  color: var(--white);
+  border-bottom: 3px solid var(--white);
+}
+
+@media screen and (min-width: 1440px) {
+  .navList {
+    gap: 40px;
+  }
+}

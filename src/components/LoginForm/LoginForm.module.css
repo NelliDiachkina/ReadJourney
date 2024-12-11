@@ -59,6 +59,15 @@
   letter-spacing: -0.24px;
 }
 
+@media screen and (min-width: 768px) {
+  .input,
+  .label {
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.28px;
+  }
+}
+
 .error {
   color: var(--red);
   font-size: 12px;
