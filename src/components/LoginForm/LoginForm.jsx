@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import css from './LoginForm.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import sprite from '../../assets/icons/sprite.svg';
 import { EMAIL_REGEX } from '../../constants/constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { loginUser } from '../../redux/auth/operations';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('Email is required').matches(EMAIL_REGEX, {
@@ -17,6 +20,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const emailId = useId();
   const passwordId = useId();
@@ -31,14 +38,18 @@ const LoginForm = () => {
     defaultValues: {
       email: '',
       password: '',
-      repeatPassword: '',
     },
     resolver: yupResolver(validationSchema),
   });
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/recommended');
+    }
+  }, [isLoggedIn, navigate]);
+
   const onSubmit = data => {
-    const { email, password } = data;
-    console.log({ email, password });
+    dispatch(loginUser(data));
     reset();
   };
 

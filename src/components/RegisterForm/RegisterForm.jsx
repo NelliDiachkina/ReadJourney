@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import css from './RegisterForm.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import sprite from '../../assets/icons/sprite.svg';
 import { EMAIL_REGEX } from '../../constants/constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../../redux/auth/operations';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -20,6 +23,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const nameId = useId();
   const emailId = useId();
@@ -33,16 +40,21 @@ const RegisterForm = () => {
   } = useForm({
     mode: 'onTouched',
     defaultValues: {
+      name: '',
       email: '',
       password: '',
-      repeatPassword: '',
     },
     resolver: yupResolver(validationSchema),
   });
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/recommended');
+    }
+  }, [isLoggedIn, navigate]);
+
   const onSubmit = data => {
-    const { name, email, password } = data;
-    console.log({ name, email, password });
+    dispatch(registerUser(data));
     reset();
   };
 
