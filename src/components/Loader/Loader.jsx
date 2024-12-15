@@ -1,15 +1,15 @@
 import { Puff } from 'react-loader-spinner';
+import css from './Loader.module.css';
 
 const Loader = () => {
   return (
-    <div>
+    <div className={css.loaderContainer}>
       <Puff
         visible={true}
-        height="50"
-        width="50"
-        color="#87d28d"
+        height="150"
+        width="150"
+        color="#e90516"
         ariaLabel="puff-loading"
-        wrapperStyle={{}}
         wrapperClass="loader"
       />
     </div>
