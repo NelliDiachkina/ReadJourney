@@ -80,13 +80,13 @@ const LoginForm = () => {
           />
           <svg
             role="button"
+            width={18}
+            height={18}
             className={`${css.icon} ${errors.password ? css.iconError : ''}`}
             onClick={() => setShowPassword(!showPassword)}
             aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
             <use
-              width={18}
-              height={18}
               href={`${sprite}${
                 showPassword ? '#icon-eye-open' : '#icon-eye-off'
               }`}

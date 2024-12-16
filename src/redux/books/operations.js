@@ -3,14 +3,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setAuthHeader } from '../auth/operations';
 
 export const fetchBooks = createAsyncThunk(
-  'tasks/fetchAll',
-  async (_, thunkAPI) => {
+  'books/fetchAll',
+  async ({ page = 1, perPage = 10 } = {}, thunkAPI) => {
     const { auth } = thunkAPI.getState();
     const persistedToken = auth.token;
 
     try {
       setAuthHeader(persistedToken);
-      const { data } = await axios.get('/books/recommend');
+      const { data } = await axios.get('/books/recommend', {
+        params: { page, perPage },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

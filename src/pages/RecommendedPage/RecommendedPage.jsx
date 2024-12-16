@@ -1,9 +1,14 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../../redux/books/operations';
+import RecommendedBooks from '../../components/RecommendedBooks/RecommendedBooks';
+import PageContent from '../../components/PageContent/PageContent';
+import { selectIsLoadingBooks } from '../../redux/books/selectors';
+import Loader from '../../components/Loader/Loader';
 
 const RecommendedPage = () => {
+  const isLoading = useSelector(selectIsLoadingBooks);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,7 +20,7 @@ const RecommendedPage = () => {
       <Helmet>
         <title>Recommended</title>
       </Helmet>
-      <h1>Recommended Page</h1>
+      <PageContent>{isLoading ? <Loader /> : <RecommendedBooks />}</PageContent>
     </>
   );
 };

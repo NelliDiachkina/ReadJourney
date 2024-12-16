@@ -1,0 +1,63 @@
+.sectionRecommended {
+  max-width: 847px;
+  border-radius: 30px;
+  padding: 40px;
+  background: var(--black-background);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.wrapperContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: 0.56px;
+}
+
+.listBooks {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.buttonList {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--white);
+  color: var(--white);
+  transition: all var(--Animation_cubic);
+}
+
+.button:disabled {
+  border: 1px solid var(--border-color);
+  color: var(--border-color);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+}
+
+.reversed {
+  transform: rotate(180deg);
+}
