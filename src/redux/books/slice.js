@@ -11,11 +11,11 @@ const initialState = {
 };
 
 const handlePending = state => {
-  state.isLoading = true;
+  state.isLoadingBooks = true;
 };
 
 const handleRejected = state => {
-  state.isLoading = false;
+  state.isLoadingBooks = false;
 };
 
 const booksSlice = createSlice({
@@ -33,7 +33,7 @@ const booksSlice = createSlice({
     builder
       .addCase(fetchBooks.pending, handlePending)
       .addCase(fetchBooks.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+        state.isLoadingBooks = false;
         state.items = payload.results;
         state.page = payload.page;
         state.hasNextPage = state.page < payload.totalPages;
@@ -41,7 +41,9 @@ const booksSlice = createSlice({
       .addCase(fetchBooks.rejected, handleRejected)
       .addCase(logOutUser.fulfilled, state => {
         state.items = [];
-        state.isLoading = false;
+        state.page = 1;
+        state.hasNextPage = false;
+        state.isLoadingBooks = false;
       }),
 });
 
