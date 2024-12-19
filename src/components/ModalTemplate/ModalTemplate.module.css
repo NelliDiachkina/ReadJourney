@@ -1,0 +1,57 @@
+.overlay {
+  background-color: rgba(20, 20, 20, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 100vw;
+}
+
+.content {
+  position: absolute;
+  width: 335px;
+  height: 421px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: var(--black-background);
+  padding: 16px;
+}
+
+.content:focus {
+  outline: none;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button {
+  color: var(--white);
+  background-color: transparent;
+  width: 22px;
+  height: 22px;
+}
+
+.icon {
+  stroke: currentColor;
+  fill: none;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    width: 500px;
+    height: 483px;
+  }
+
+  .buttonWrapper {
+    margin-bottom: 12px;
+  }
+}

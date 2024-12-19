@@ -1,10 +1,10 @@
 import css from './Book.module.css';
 
-const Book = ({ book }) => {
+const Book = ({ book, onClick }) => {
   const { imageUrl, title, author } = book;
 
   return (
-    <li className={css.book}>
+    <li className={css.book} onClick={onClick}>
       <img
         src={imageUrl}
         alt={title}

@@ -10,8 +10,13 @@ import Book from '../Book/Book';
 import { fetchBooks } from '../../redux/books/operations';
 import sprite from '../../assets/icons/sprite.svg';
 import { decrementPage, incrementPage } from '../../redux/books/slice';
+import ModalTemplate from '../ModalTemplate/ModalTemplate';
+import { useState } from 'react';
 
 const RecommendedBooks = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+
   const books = useSelector(selectAllBooks);
   const currentPage = useSelector(selectPage);
   const perPage = useSelector(selectPerPage);
@@ -19,13 +24,23 @@ const RecommendedBooks = () => {
   const dispatch = useDispatch();
 
   const handleNextButtonClick = () => {
-    dispatch(incrementPage);
+    dispatch(incrementPage());
     dispatch(fetchBooks({ page: currentPage + 1, perPage }));
   };
 
   const handlePrevButtonClick = () => {
-    dispatch(decrementPage);
+    dispatch(decrementPage());
     dispatch(fetchBooks({ page: currentPage - 1, perPage }));
+  };
+
+  const handleOpenModal = book => {
+    setSelectedBook(book);
+    setModalIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedBook(null);
+    setModalIsOpen(false);
   };
 
   return (
@@ -67,9 +82,41 @@ const RecommendedBooks = () => {
       </div>
       <ul className={css.listBooks}>
         {books.map(book => (
-          <Book key={book._id} book={book} />
+          <Book
+            key={book._id}
+            book={book}
+            onClick={() => handleOpenModal(book)}
+          />
         ))}
       </ul>
+      <ModalTemplate modalIsOpen={modalIsOpen} closeModal={handleCloseModal}>
+        {selectedBook && (
+          <div className={css.selectedBookContainer}>
+            <img
+              src={selectedBook.imageUrl}
+              alt={selectedBook.title}
+              className={css.bookImage}
+              width={140}
+              height={213}
+            />
+            <div className={css.bookWrapperText}>
+              <p className={css.bookTitle}>{selectedBook.title}</p>
+              <p className={css.bookText}>{selectedBook.author}</p>
+              <p className={css.bookDescription}>
+                {selectedBook.totalPages}
+                <span>pages</span>
+              </p>
+            </div>
+            <button
+              type="button"
+              className={css.modalBtn}
+              aria-label="Add to library"
+            >
+              Add to library
+            </button>
+          </div>
+        )}
+      </ModalTemplate>
     </section>
   );
 };
