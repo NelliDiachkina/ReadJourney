@@ -1,0 +1,71 @@
+.filersTitle {
+  margin-bottom: 8px;
+  margin-left: 14px;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.28px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrapperInput {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-light);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 14px;
+  padding-left: 80px;
+}
+
+.input::placeholder {
+  color: var(--white);
+}
+
+.label {
+  color: var(--gray-dark);
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input,
+.label {
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.24px;
+}
+
+.btn {
+  width: 140px;
+  height: 42px;
+  color: var(--white);
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: 0.28px;
+  border-radius: 30px;
+  border: 1px solid var(--border-color);
+  transition: all var(--Animation_cubic);
+}
+
+.btn:hover {
+  color: var(--black-background);
+  background-color: var(--white);
+}

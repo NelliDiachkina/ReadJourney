@@ -1,0 +1,58 @@
+import { useId } from 'react';
+import { useForm } from 'react-hook-form';
+import css from './Filters.module.css';
+
+const Filters = () => {
+  const titleId = useId();
+  const authorId = useId();
+
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: {
+      title: '',
+      author: '',
+    },
+  });
+
+  const onSubmit = data => {
+    console.log(data);
+    reset();
+  };
+
+  return (
+    <>
+      <h2 className={css.filersTitle}>Filters:</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+        <div className={css.inputsWrapper}>
+          <div className={css.wrapperInput}>
+            <label htmlFor={titleId} className={css.label}>
+              Book title:
+            </label>
+            <input
+              {...register('title')}
+              type="text"
+              className={css.input}
+              placeholder="Enter text"
+            />
+          </div>
+          <div className={css.wrapperInput}>
+            <label htmlFor={authorId} className={css.label}>
+              The author:
+            </label>
+            <input
+              {...register('author')}
+              type="text"
+              className={css.input}
+              placeholder="Enter text"
+            />
+          </div>
+        </div>
+
+        <button type="submit" className={css.btn} aria-label="To apply">
+          To apply
+        </button>
+      </form>
+    </>
+  );
+};
+
+export default Filters;
