@@ -1,0 +1,30 @@
+.quote {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-radius: 12px;
+  background-color: var(--black-light);
+  color: var(--gray-dark);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.28px;
+}
+
+.img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background-image: image-set(
+    url(../../assets/img/dashboard/books_1x.webp) 1x,
+    url(../../assets/img/dashboard/books_2x.webp) 2x
+  );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.text {
+  color: var(--white);
+}

@@ -1,8 +1,11 @@
 import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import css from './Filters.module.css';
+import { useDispatch } from 'react-redux';
+import { fetchBooks } from '../../redux/books/operations';
 
 const Filters = () => {
+  const dispatch = useDispatch();
   const titleId = useId();
   const authorId = useId();
 
@@ -14,13 +17,18 @@ const Filters = () => {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    const params = {
+      ...data,
+      page: 1,
+      perPage: 10,
+    };
+    dispatch(fetchBooks(params));
     reset();
   };
 
   return (
     <>
-      <h2 className={css.filersTitle}>Filters:</h2>
+      <h3 className={css.filersTitle}>Filters:</h3>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <div className={css.inputsWrapper}>
           <div className={css.wrapperInput}>

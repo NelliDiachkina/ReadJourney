@@ -1,7 +1,9 @@
 .dashboard {
   width: 353px;
-  height: 651px;
-  padding: 20px;
+  padding: 40px 20px 20px;
   border-radius: 30px;
   background: var(--black-background);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

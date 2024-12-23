@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../../redux/books/operations';
 import RecommendedBooks from '../../components/RecommendedBooks/RecommendedBooks';
-import PageContent from '../../components/PageContent/PageContent';
 import { selectIsLoadingBooks } from '../../redux/books/selectors';
 import Loader from '../../components/Loader/Loader';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Filters from '../../components/Filters/Filters';
-import Layout from '../../components/Layout/Layout';
+import Workout from '../../components/Workout/Workout';
+import Quote from '../../components/Quote/Quote';
 
 const RecommendedPage = () => {
   const isLoading = useSelector(selectIsLoadingBooks);
@@ -23,20 +23,19 @@ const RecommendedPage = () => {
       <Helmet>
         <title>Recommended</title>
       </Helmet>
-      <PageContent>
-        <Layout>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              <Dashboard>
-                <Filters />
-              </Dashboard>
-              <RecommendedBooks />
-            </>
-          )}
-        </Layout>
-      </PageContent>
+
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Dashboard>
+            <Filters />
+            <Workout />
+            <Quote />
+          </Dashboard>
+          <RecommendedBooks />
+        </>
+      )}
     </>
   );
 };
