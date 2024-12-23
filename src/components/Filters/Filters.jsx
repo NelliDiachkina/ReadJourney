@@ -17,12 +17,7 @@ const Filters = () => {
   });
 
   const onSubmit = data => {
-    const params = {
-      ...data,
-      page: 1,
-      perPage: 10,
-    };
-    dispatch(fetchBooks(params));
+    dispatch(fetchBooks(data));
     reset();
   };
 
