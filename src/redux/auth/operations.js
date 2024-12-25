@@ -3,8 +3,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://readjourney.b.goit.study/api';
 
-export const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+export const setupAuthHeader = (thunkAPI, tokenName = 'token') => {
+  const { auth } = thunkAPI.getState();
+  const persistedToken = auth[tokenName];
+  axios.defaults.headers.common.Authorization = `Bearer ${persistedToken}`;
 };
 
 const clearAuthHeader = () => {
@@ -38,11 +40,8 @@ export const loginUser = createAsyncThunk(
 export const logOutUser = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
-    const { auth } = thunkAPI.getState();
-    const persistedToken = auth.token;
-
     try {
-      setAuthHeader(persistedToken);
+      setupAuthHeader(thunkAPI);
       await axios.post('/users/signout');
       clearAuthHeader();
     } catch (error) {
@@ -54,11 +53,8 @@ export const logOutUser = createAsyncThunk(
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const { auth } = thunkAPI.getState();
-    const persistedRefreshToken = auth.refreshToken;
-
     try {
-      setAuthHeader(persistedRefreshToken);
+      setupAuthHeader(thunkAPI, 'refreshToken');
       const { data } = await axios.get('/users/current/refresh');
       return data;
     } catch (error) {

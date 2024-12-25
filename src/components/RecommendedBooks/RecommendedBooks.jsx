@@ -3,17 +3,19 @@ import css from './RecommendedBooks.module.css';
 import {
   selectAllBooks,
   selectHasNextPage,
+  selectIsLoadingBooks,
   selectPage,
   selectPerPage,
 } from '../../redux/books/selectors';
 import Book from '../Book/Book';
-import { fetchBooks } from '../../redux/books/operations';
+import { addBookFromRecommend, fetchBooks } from '../../redux/books/operations';
 import sprite from '../../assets/icons/sprite.svg';
 import { decrementPage, incrementPage } from '../../redux/books/slice';
 import ModalTemplate from '../ModalTemplate/ModalTemplate';
 import { useState } from 'react';
 
 const RecommendedBooks = () => {
+  const isLoading = useSelector(selectIsLoadingBooks);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
@@ -41,6 +43,11 @@ const RecommendedBooks = () => {
   const handleCloseModal = () => {
     setSelectedBook(null);
     setModalIsOpen(false);
+  };
+
+  const handleAddToLibrary = id => {
+    dispatch(addBookFromRecommend(id));
+    handleCloseModal();
   };
 
   return (
@@ -111,6 +118,8 @@ const RecommendedBooks = () => {
               type="button"
               className={css.modalBtn}
               aria-label="Add to library"
+              onClick={() => handleAddToLibrary(selectedBook._id)}
+              disabled={isLoading}
             >
               Add to library
             </button>

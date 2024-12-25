@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchBooks } from './operations';
+import {
+  addBookFromRecommend,
+  deleteBook,
+  fetchBooks,
+  fetchOwnBooks,
+} from './operations';
 import { logOutUser } from '../auth/operations';
 
 const initialState = {
   items: [],
+  libraryBooks: [],
   page: 1,
   perPage: 10,
   hasNextPage: false,
@@ -44,7 +50,27 @@ const booksSlice = createSlice({
         state.page = 1;
         state.hasNextPage = false;
         state.isLoadingBooks = false;
-      }),
+      })
+      .addCase(addBookFromRecommend.pending, handlePending)
+      .addCase(addBookFromRecommend.fulfilled, (state, { payload }) => {
+        state.isLoadingBooks = false;
+        state.libraryBooks = [...state.libraryBooks, payload];
+      })
+      .addCase(addBookFromRecommend.rejected, handleRejected)
+      .addCase(fetchOwnBooks.pending, handlePending)
+      .addCase(fetchOwnBooks.fulfilled, (state, { payload }) => {
+        state.isLoadingBooks = false;
+        state.libraryBooks = payload;
+      })
+      .addCase(fetchOwnBooks.rejected, handleRejected)
+      .addCase(deleteBook.pending, handlePending)
+      .addCase(deleteBook.fulfilled, (state, { payload }) => {
+        state.isLoadingBooks = false;
+        state.libraryBooks = state.libraryBooks.filter(
+          book => book._id !== payload.id
+        );
+      })
+      .addCase(deleteBook.rejected, handleRejected),
 });
 
 export const { decrementPage, incrementPage } = booksSlice.actions;
