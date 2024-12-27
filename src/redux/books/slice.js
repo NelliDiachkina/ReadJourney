@@ -14,6 +14,7 @@ const initialState = {
   perPage: 10,
   hasNextPage: false,
   isLoadingBooks: false,
+  filter: { value: '', text: 'All books' },
 };
 
 const handlePending = state => {
@@ -33,6 +34,9 @@ const booksSlice = createSlice({
     },
     decrementPage(state) {
       state.page -= 1;
+    },
+    saveFilter(state, { payload }) {
+      state.filter = payload;
     },
   },
   extraReducers: builder =>
@@ -73,5 +77,5 @@ const booksSlice = createSlice({
       .addCase(deleteBook.rejected, handleRejected),
 });
 
-export const { decrementPage, incrementPage } = booksSlice.actions;
+export const { decrementPage, incrementPage, saveFilter } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

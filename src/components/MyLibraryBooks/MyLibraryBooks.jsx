@@ -4,6 +4,7 @@ import { selectLibraryBooks } from '../../redux/books/selectors';
 import EmptyLibraryBlock from '../EmptyLibraryBlock/EmptyLibraryBlock';
 import Book from '../Book/Book';
 import { deleteBook } from '../../redux/books/operations';
+import Select from '../Select/Select';
 
 const MyLibraryBooks = () => {
   const myLibrary = useSelector(selectLibraryBooks);
@@ -19,7 +20,10 @@ const MyLibraryBooks = () => {
 
   return (
     <section className={css.librarySection}>
-      <h1 className={css.title}>My library</h1>
+      <div className={css.titleWrapper}>
+        <h1 className={css.title}>My library</h1>
+        <Select />
+      </div>
       {myLibrary.length === 0 ? (
         <EmptyLibraryBlock />
       ) : (

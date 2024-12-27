@@ -65,6 +65,7 @@
 .deleteButton:hover {
   color: var(--red);
   border-color: var(--red);
+  transform: scale(1.1);
 }
 
 .iconDelete {

@@ -1,6 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoadingBooks } from '../../redux/books/selectors';
+import {
+  selectFilter,
+  selectIsLoadingBooks,
+} from '../../redux/books/selectors';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Loader from '../../components/Loader/Loader';
 import MyLibraryBooks from '../../components/MyLibraryBooks/MyLibraryBooks';
@@ -9,11 +12,12 @@ import { fetchOwnBooks } from '../../redux/books/operations';
 
 const LibraryPage = () => {
   const isLoading = useSelector(selectIsLoadingBooks);
+  const { value } = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchOwnBooks());
-  }, [dispatch]);
+    dispatch(fetchOwnBooks(value));
+  }, [dispatch, value]);
 
   return (
     <>

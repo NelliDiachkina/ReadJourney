@@ -13,7 +13,7 @@ const EmptyLibraryBlock = () => {
         />
       </div>
       <p className={css.text}>
-        To start training, add{' '}
+        To start training, add
         <span className={css.textColor}>some of your books</span> or from the
         recommended ones
       </p>

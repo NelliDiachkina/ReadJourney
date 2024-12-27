@@ -45,10 +45,11 @@ export const addBookFromRecommend = createAsyncThunk(
 
 export const fetchOwnBooks = createAsyncThunk(
   'books/ownBooks',
-  async (_, thunkAPI) => {
+  async (status = '', thunkAPI) => {
     try {
       setupAuthHeader(thunkAPI);
-      const response = await axios.get('/books/own');
+      const params = status ? { status } : {};
+      const response = await axios.get('/books/own', { params });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

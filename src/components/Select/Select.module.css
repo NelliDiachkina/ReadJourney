@@ -1,0 +1,59 @@
+.menuButton {
+  border-radius: 12px;
+  border: 1px solid var(--gray-dark);
+  color: var(--white);
+  padding: 14px;
+  width: 153px;
+  height: 46px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.28px;
+  outline: none;
+}
+
+.menu {
+  margin-top: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  width: 153px;
+  height: 121px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  outline: none;
+  background: var(--black-light);
+}
+
+.buttonOption {
+  background-color: transparent;
+  width: 100%;
+  color: var(--gray-dark);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.28px;
+  transition: all var(--Animation_cubic);
+}
+
+.buttonOption:hover {
+  color: var(--white);
+}
+
+.icon {
+  stroke: currentColor;
+  fill: none;
+  transform: rotate(180deg);
+  transition: transform var(--Animation_cubic);
+}
+
+.iconOpen {
+  transform: rotate(0deg);
+}
